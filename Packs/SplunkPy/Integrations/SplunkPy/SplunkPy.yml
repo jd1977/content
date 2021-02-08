@@ -16,7 +16,7 @@ configuration:
   name: port
   required: true
   type: 0
-- defaultvalue: search index=notable | eval rule_name=if(isnull(rule_name),source,rule_name) | eval rule_title=if(isnull(rule_title),rule_name,rule_title) | `get_urgency` | `risk_correlation` | eval rule_description=if(isnull(rule_description),source,rule_description) | eval security_domain=if(isnull(security_domain),source,security_domain)
+- defaultvalue: search `notable` | eval rule_name=if(isnull(rule_name),source,rule_name) | eval rule_title=if(isnull(rule_title),rule_name,rule_title) | `get_urgency` | `risk_correlation` | eval rule_description=if(isnull(rule_description),source,rule_description) | eval security_domain=if(isnull(security_domain),source,security_domain)
   display: Fetch notable events ES query
   name: fetchQuery
   required: false
@@ -110,6 +110,12 @@ configuration:
   name: type_field
   required: false
   type: 0
+- defaultvalue: 'false'
+  display: Mirror incoming incidents
+  hidden: false
+  name: incoming_mirror
+  required: false
+  type: 8
 description: Run queries on Splunk servers.
 display: SplunkPy
 name: SplunkPy
@@ -613,12 +619,33 @@ script:
       for Mapping fetched incidents through the Get Schema option.
     execution: false
     name: get-mapping-fields
+  - arguments:
+      - default: false
+        description: The remote event id
+        isArray: false
+        name: id
+        required: true
+        secret: false
+      - default: false
+        defaultValue: '0'
+        description: UTC timestamp in seconds. The incident is only updated if it was
+          modified after the last update time.
+        isArray: false
+        name: lastUpdate
+        required: false
+        secret: false
+    deprecated: false
+    description: Get remote data from a remote incident. Please note that this method
+      will not update the current incident, it's here for debugging purposes.
+    execution: false
+    name: get-remote-data
   dockerimage: demisto/splunksdk:1.0.0.11989
   feed: false
   isfetch: true
   longRunning: false
   longRunningPort: false
   ismappable: true
+  isremotesyncin: true
   runonce: false
   script: '-'
   subtype: python2
