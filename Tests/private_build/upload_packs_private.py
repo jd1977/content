@@ -388,8 +388,8 @@ def prepare_test_directories(pack_artifacts_path):
     :return: None
     """
 
-    packs_dir = '/home/runner/work/content-private/content-private/content/artifacts/packs'
-    zip_path = '/home/runner/work/content-private/content-private/content/temp-dir'
+    packs_dir = './artifacts/packs'
+    zip_path = './temp-dir'
     if not os.path.exists(packs_dir):
         logging.info("Packs dir not found. Creating.")
         os.mkdir(packs_dir)
