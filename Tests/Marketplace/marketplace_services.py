@@ -663,6 +663,7 @@ class Pack(object):
         pack_metadata['searchRank'] = Pack._get_search_rank(tags=pack_metadata['tags'],
                                                             certification=pack_metadata['certification'],
                                                             content_items=pack_content_items)
+        pack_metadata['Test'] = "Test adding this line"
         pack_metadata['categories'] = input_to_list(input_data=user_metadata.get('categories'), capitalize_input=True)
         pack_metadata['contentItems'] = pack_content_items
         pack_metadata['integrations'] = Pack._get_all_pack_images(integration_images,
