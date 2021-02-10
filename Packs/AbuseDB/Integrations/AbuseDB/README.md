@@ -1,6 +1,6 @@
 <!-- HTML_DOC -->
 <p>Use the AbuseIPDB integration to report and identify IP addresses that have been associated with malicious activity online.</p>
-<h2>Use Cases</h2>
+<h2>Use Cases ADD test </h2>
 <p>Check, Report, and get Blacklist of top malicious IPs.</p>
 <h2>Configure AbuseIPDB on Demisto</h2>
 <ol>
