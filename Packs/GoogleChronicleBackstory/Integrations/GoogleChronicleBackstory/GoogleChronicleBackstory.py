@@ -19,8 +19,14 @@ DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
 
 SCOPES = ['https://www.googleapis.com/auth/chronicle-backstory']
 
-BACKSTORY_API_V1_URL = 'https://backstory.googleapis.com/v1'
-BACKSTORY_API_V2_URL = 'https://backstory.googleapis.com/v2'
+REGIONURL = demisto.getParam('region')
+if REGIONURL == 'Europe':
+    BACKSTORY_API_V1_URL = 'https://europe-backstory.googleapis.com/v1'
+    BACKSTORY_API_V2_URL = 'https://europe-backstory.googleapis.com/v2'
+
+elif REGIONURL == 'US':
+    BACKSTORY_API_V1_URL = 'https://backstory.googleapis.com/v1'
+    BACKSTORY_API_V2_URL = 'https://backstory.googleapis.com/v2'
 
 ISO_DATE_REGEX = (r'^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):'
                   r'([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?Z$')
